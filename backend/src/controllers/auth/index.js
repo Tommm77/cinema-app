@@ -11,8 +11,9 @@ const {hashPassword} = require("../../utils/bcrypt");
 exports.signUp = async (req, res) => {
     try {
         // create(req, res)
-        const {username, email, firstname, lastname, password} = req.body
+        const {userId, username, email, firstname, lastname, password} = req.body
         const user = await userModel.create({
+            userId,
             username,
             email,
             password,
@@ -43,7 +44,7 @@ exports.login = async (req, res, next) => {
             user: await user,
             token: `Bearer ${
                 generateToken({
-                    _id: user.id,
+                    _id: user.userId,
                     email: user.email,
                     firstname: user.firstname
                 })

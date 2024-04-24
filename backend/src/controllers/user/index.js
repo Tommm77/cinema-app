@@ -22,24 +22,27 @@ exports.getAll = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        const { username, email, firstname, lastname, password } = req.body
+        const { userId, username, email, firstname, lastname, password } = req.body;
+        ;
         const user = await userModel.create({
+            userId,
             username,
             email,
             password,
             firstname,
             lastname
-        })
+        });
+
         return !user
             ?
-            res.status(400).json({statusCode: 400, message: 'ERROR IN CREATE NEW USER '})
+            res.status(400).json({ statusCode: 400, message: 'ERROR IN CREATE NEW USER ' })
             :
-            res.status(200).json({statusCode: 201, message: user})
+            res.status(201).json({ statusCode: 201, message: user });
     } catch (e) {
-        console.log(e)
-        return res.status(400).json({statusCode: 400, message: e.message})
+        console.log(e);
+        return res.status(400).json({ statusCode: 400, message: e.message });
     }
-}
+};
 
 
 exports.getById = async (req, res) => {

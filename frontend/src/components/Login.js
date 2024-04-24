@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
+import axios from '../api/axios';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Ici, ajoutez votre logique pour connecter l'utilisateur
-        console.log('Login attempt with:', email, password);
+        try {
+            const response = await axios.post('/auth/login', {
+                email,
+                password
+            });
+            console.log('Login successful:', response.data);
+            localStorage.setItem('token', response.data.token);
+        } catch (error) {
+            console.error('Login failed:', error.response ? error.response.data : "No response");
+        }
     };
 
     return (

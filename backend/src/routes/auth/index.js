@@ -1,9 +1,8 @@
-const expressRouter = require('express').Router(),
-    authController = require('../../controllers/auth');
+const express = require('express');
+const expressRouter = express.Router();
+const authController = require('../../controllers/auth');
 
-module.exports = (app) => {
-    // app.get('/users', userController.getAll)
-    expressRouter.post('/login', authController.login)
-    expressRouter.post('/registration', authController.signUp)
-    app.use('/api/v1', expressRouter)
-}
+expressRouter.post('/login', authController.login);
+expressRouter.post('/registration', authController.signUp);
+
+module.exports = expressRouter;

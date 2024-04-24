@@ -22,7 +22,7 @@ exports.localStrategy = new LocalStrategy({usernameField: 'email'}, async (usern
 
 exports.jwtStrategy = new JwtStrategy(jwtOptions, async (payload, done) => {
     console.log("jwtStrategy", payload)
-    const user = await userModel.findById(payload._id)
+    const user = await userModel.findById(payload._id).exec()
     if (!user) return done(null, false)
     return done(null, user)
 })

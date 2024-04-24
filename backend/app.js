@@ -12,11 +12,16 @@ const userRouter = require('./src/routes/users');
 const movieRouter = require('./src/routes/movies');
 const authRouter = require('./src/routes/auth');
 
+const cors = require('cors');
+
 // Initialisation de l'application Express
 const app = express();
 
 // Configuration du middleware pour analyser le JSON
 app.use(express.json());
+
+// Configuration du middleware pour gérer les CORS
+app.use(cors());
 
 // Configuration du middleware pour Passport
 app.use(passport.initialize());

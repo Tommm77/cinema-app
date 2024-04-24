@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
+import axios from '../api/axios';
+import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Ici, ajoutez votre logique pour inscrire l'utilisateur
-        console.log('Register attempt with:', email, password, username);
+        try {
+            const userId = uuidv4();
+            const response = await axios.post('/auth/registration', {
+                userId,
+                username,
+                email,
+                password,
+            });
+            console.log('Registration successful:', response.data);
+            navigate('/movies');
+        } catch (error) {
+            console.error('Registration failed:', error.response ? error.response.data : "No response");
+        }
     };
 
     return (
