@@ -26,9 +26,9 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${proc
     .then(() => console.log('MongoDB connected successfully.'))
         .catch(err => console.error('MongoDB connection error:', err));
 // Définition des routes
-app.use('/api/v1/users', userRouter);
-app.use('/api/v1/movies', movieRouter);
-app.use('/api/v1/auth', authRouter);
+app.use('/api/users', userRouter);
+app.use('/api/movies', movieRouter);
+app.use('/api/auth', authRouter);
 
 // Middleware pour gérer les erreurs 404
 app.use((req, res, next) => {
