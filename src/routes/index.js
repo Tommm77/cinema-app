@@ -1,5 +1,5 @@
 module.exports = (app) => {
     require('./users')(app)
-    require('./products')(app)
+    require('./movies')(app)
     require('./auth')(app)
 }

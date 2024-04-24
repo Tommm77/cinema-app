@@ -9,7 +9,7 @@ require('./src/config/passport'); // configuration de Passport
 
 // Importation des routeurs
 const userRouter = require('./src/routes/users');
-const productRouter = require('./src/routes/products');
+const movieRouter = require('./src/routes/movies');
 const authRouter = require('./src/routes/auth');
 
 // Initialisation de l'application Express
@@ -27,7 +27,7 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${proc
         .catch(err => console.error('MongoDB connection error:', err));
 // Définition des routes
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/products', productRouter);
+app.use('/api/v1/movies', movieRouter);
 app.use('/api/v1/auth', authRouter);
 
 // Middleware pour gérer les erreurs 404
